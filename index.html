@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyVNR Voice Portal</title>
+  <link rel="icon" href="o610rvmps1.jpg" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-inter bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow p-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <img src="o610rvmps1.jpg" alt="VNR Logo" class="h-10 w-auto">
+      <h1 class="text-xl font-bold">MyVNR Voice Portal</h1>
+    </div>
+    <a href="#admin" class="text-blue-600 hover:underline">Admin Login</a>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="p-8 text-center bg-blue-50">
+    <h2 class="text-3xl font-semibold mb-2">Empowering Student Voice</h2>
+    <p class="text-gray-600">Submit anonymous suggestions and track progress</p>
+  </section>
+
+  <!-- Suggestion Form -->
+  <section class="max-w-xl mx-auto p-6 bg-white shadow rounded my-8">
+    <h3 class="text-xl font-medium mb-4">Submit a Suggestion</h3>
+    <form>
+      <textarea placeholder="Write your suggestion..." required class="w-full border rounded p-2 mb-3"></textarea>
+      <select required class="w-full border rounded p-2 mb-4">
+        <option value="">Select Category</option>
+        <option>Academics</option>
+        <option>Infrastructure</option>
+        <option>Facilities</option>
+        <option>Other</option>
+      </select>
+      <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
+        Submit Anonymously
+      </button>
+    </form>
+  </section>
+
+  <!-- Public Suggestions View -->
+  <section class="max-w-4xl mx-auto my-12 p-6">
+    <h3 class="text-2xl font-semibold mb-4">Submitted Suggestions</h3>
+    <div class="grid gap-4">
+      <!-- Example card -->
+      <div class="bg-white shadow p-4 rounded">
+        <p class="text-gray-700">"Need more water dispensers in Block A."</p>
+        <div class="mt-2 text-sm text-gray-500">Category: Facilities • Status: In Progress</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Admin Login -->
+  <section id="admin" class="max-w-md mx-auto p-6 bg-white shadow rounded my-16">
+    <h3 class="text-xl font-medium mb-4">Admin Login</h3>
+    <form>
+      <input type="email" placeholder="Email" required class="w-full border rounded p-2 mb-3">
+      <input type="password" placeholder="Password" required class="w-full border rounded p-2 mb-4">
+      <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
+        Login
+      </button>
+    </form>
+  </section>
+
+</body>
+</html>
+
+<script>
+  // Handle Suggestion Form Submission
+  const form = document.querySelector("form");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    // Get values
+    const suggestion = form.querySelector("textarea").value.trim();
+    const category = form.querySelector("select").value;
+
+    if (!suggestion || !category) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    // For now, just show a basic confirmation
+    alert("✅ Suggestion submitted anonymously!\nThank you for sharing!");
+
+    // Clear the form
+    form.reset();
+
+    // 🔥 Firebase integration can go here in the future
+    // e.g., add to Firestore collection
+  });
+</script>
+
+<script>
+  // Admin Login Logic
+  const loginForm = document.querySelector("#admin form");
+
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const email = loginForm.querySelector('input[type="email"]').value.trim();
+    const password = loginForm.querySelector('input[type="password"]').value;
+
+    if (email === "admin@vnrvjiet.ac.in" && password === "admin123") {
+      alert("✅ Welcome Admin!");
+      // Show admin dashboard or redirect — for now, just confirmation
+    } else {
+      alert("❌ Invalid login. Try again.");
+    }
+  });
+</script>
